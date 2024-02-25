@@ -11,3 +11,20 @@ ctrl arrow 			 	 - nagivate on text
 alt d                	 - delete text
 ctrl u               	 - delete whole line
 ctrl pg up / pg down     - change tab
+
+
+Tmux:
+C-a |       		- split
+C-a -       		- split
+C-a  ARROWS 		- change pane
+C-a hold + arrows	- resize
+C-a z               - zoom
+C-a WINDOW-PREFIX   - change window
+C-a s               - session manager
+C-a q               - number panes
+
+C-a {    + h j k l
+C-a [    + h j k l
+
+C-a d                - detach
+tmux a
