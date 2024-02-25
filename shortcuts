@@ -22,6 +22,10 @@ C-a z               - zoom
 C-a WINDOW-PREFIX   - change window
 C-a s               - session manager
 C-a q               - number panes
+C-a q 1              - switch to pane
+C-a c                - new window
+C-a ,                - rename window
+
 
 C-a {    + h j k l
 C-a [    + h j k l
