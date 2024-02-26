@@ -1,3 +1,79 @@
+Vim:
+set no => set line numbers
+set nonu => unset line numbers
+!wq!
+%s/search_string/replace_string/g
+
+
+Commands:
+type ls
+man -k "copy files"
+man -k uname
+C l - clear screen
+!1   - run number one from history
+!!   - run last command from history 
+!1:p  - just print the command, not run
+C g    - leave ,,control R,, - looking reverse
+
+
+du -sh /home/   - real size
+stat /home      
+
+shred -vu -n 100 file1
+
+
+# installing plocate
+sudo apt install plocate
+# updating the locate db
+sudo updatedb
+# displaying statistics
+locate -S
+# finding file by name
+locate filename # => filename is expanded to *filename*
+locate -i filename # => the filename is case insensitive
+locate -b '\filename' # => finding by exact name
+# finding using the basename
+locate -b filename
+# finding using regular expressions
+locate -r 'regex'
+# checking that the file exists
+locate -e filename
+# showing command path
+which command
+which -a command
+
+
+
+Monitoring Users
+who -H # => displays logged in users
+id # => displays the current user and its groups
+whoami # => displays EUID
+# listing who’s logged in and what’s their current process.
+w
+uptime
+# printing information about the logins and logouts of the users
+last
+last -u username
+
+
+# displaying the file attributes
+lsattr filename
+#changing the file attributes
+chattr +-attribute filename # => Example: sudo chattr +i report.txt
+
+
+
+
+
+UMASK
+# displaying the UMASK
+umask
+# setting a new umask value
+umask new_value # => Example: umask 0022
+
+
+
+
 Terminator
 ctrl shift o			 - split
 ctrl shift e			 - split
