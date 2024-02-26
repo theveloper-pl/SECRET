@@ -1,3 +1,5 @@
+apt install fonts-powerline   -   for good looking terminal
+
 Vim:
 set no => set line numbers
 set nonu => unset line numbers
