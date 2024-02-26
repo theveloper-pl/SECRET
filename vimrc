@@ -1,6 +1,7 @@
 " enable mouse support "
 
 set mouse=a
+set clipboard=unnamed
 
 
 
