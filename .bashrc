@@ -329,4 +329,34 @@ unset bash_prompt
 
 
 
-### EOF ###
+# Infinite history
+
+HISTSIZE=-1
+
+HISTFILESIZE=-1
+
+
+
+
+
+# Don't save in history commands started with space
+
+HISTCONTROL=ignorespace
+
+
+
+# Save datetime in history
+
+HISTTIMEFORMAT="%d/%m/%y %T "
+
+
+
+alias ls='ls --color=auto'
+
+alias grep='grep --color=auto'
+
+alias fgrep='fgrep --color=auto'
+
+alias egrep='egrep --color=auto'
+
+alias l='ls -lah --color=auto'
