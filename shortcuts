@@ -1,5 +1,8 @@
 apt install fonts-powerline   -   for good looking terminal
 
+# running a process in the background
+command & # => Example: sleep 100 &
+
 Vim:
 set no => set line numbers
 set nonu => unset line numbers
