@@ -3,6 +3,17 @@ apt install fonts-powerline   -   for good looking terminal
 # running a process in the background
 command & # => Example: sleep 100 &
 
+# Showing running jobs
+jobs
+# Stopping (pausing) the running process
+Ctrl + Z
+# resuming and bringing to the foreground a process by job_d
+fg %job_id
+# resuming in the background a process by job_d
+bg %job_id
+
+
+
 Vim:
 set no => set line numbers
 set nonu => unset line numbers
