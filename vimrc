@@ -1,6 +1,7 @@
 " enable mouse support "
 
 set mouse=a
+
 set clipboard=unnamed
 
 
@@ -15,7 +16,9 @@ filetype plugin indent on
 
 " enable line numbers "
 
-set number
+set number relativenumber
+
+
 
 
 
@@ -150,4 +153,6 @@ colorscheme desert
 "            nnoremap <F3> :! evince $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR>
 
 "            nnoremap <F4> :! rm *.log *.aux *.out *.blg & disown<CR><CR>
+
+
 
