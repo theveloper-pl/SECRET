@@ -1,91 +1,59 @@
-apt install fonts-powerline   -   for good looking terminal
 
-# running a process in the background
-command & # => Example: sleep 100 &
+AWK:
+ls -lah | awk 'NR==1;NR>1{print $1 " " $4}'
+awk 'NR==1;NR>1{ print $1 "  " $2 }' test
+awk '{ print $1 "  " $2 }' test
+awk 'NR>1{ print $1 "  " $2 }' test
+awk 'NR>1{print "First column item: " $1 " Second column item: " $2 }' test
+awk 'NR==3{print $1}' test
+ls -lah | awk 'NR>1{if ($9 == "main.py") print "python3 " $9}'
+awk -F ":" '{print $1}' /etc/passwd
+awk -F'/' 'NR>1{print $NF}' /etc/shells
+df -h | awk '/\/dev/ {print $1}'
+awk 'length($0) > 5' /etc/shells
+ps -ef | awk '{ if($NF == "/bin/bash") print }'
+ps -ef | awk '{ if($1 == "thevelo+") print }'
 
-# Showing running jobs
-jobs
-# Stopping (pausing) the running process
-Ctrl + Z
-# resuming and bringing to the foreground a process by job_d
-fg %job_id
-# resuming in the background a process by job_d
-bg %job_id
+
+XARGS:
+seq 5 | xargs touch
+ls | awk 'NR>0{print}' | xargs rm
+awk -F':' '{print $1}' /etc/passwd | xargs touch
+awk -F':' '{print $1}' /etc/passwd | xargs -I% echo "rm %"
+seq 10 | xargs -I% touch %.txt
+ls | awk -F'.' '{print $1}' | xargs -I% mv %.txt %.text
+
+
+SED: - replace text
+sed 's/temp/jd/' test               - replace only first in each line
+sed -i temp/jd/' test               - will replace in that file
+sed 's/temp/jd/g' <test >test2      - replace all
+echo "Hello world" | sed 's/l/X/g'
+sed "/queue/s/s/xd/" main.py        - replace only in lines that have word queue
+sed "/queue/d" main.py              - remove lines that have queue
+cat /etc/shells | sed -e 's/usr/<3/g' -e 's/bin/byn/g'      -multiple regex
+sed -i 's/ *$//' main.py       - remove spaces at the end of lines
+sed -i 's/[[:space:]]*$//' main.py       - remove tabs at the end of lines
+sed '/^$/d' main.py - remove empty line
+sed 's/[a-z]/\U&/g' main.py              - replace all char to upper
+sed 12q main.py                   - print first 12 lines
 
 
 
-Vim:
+VIM:
 set no => set line numbers
 set nonu => unset line numbers
 !wq!
 %s/search_string/replace_string/g
+hjkl / arrows - movement
+w / b- hop by world
+u - undo delete
+dd - delete
+d3w - delete 3 words
 
-
-Commands:
-type ls
-man -k "copy files"
-man -k uname
-C l - clear screen
-!1   - run number one from history
-!!   - run last command from history 
-!1:p  - just print the command, not run
-C g    - leave ,,control R,, - looking reverse
-
-
-du -sh /home/   - real size
-stat /home      
-
-shred -vu -n 100 file1
-
-
-# installing plocate
-sudo apt install plocate
-# updating the locate db
-sudo updatedb
-# displaying statistics
-locate -S
-# finding file by name
-locate filename # => filename is expanded to *filename*
-locate -i filename # => the filename is case insensitive
-locate -b '\filename' # => finding by exact name
-# finding using the basename
-locate -b filename
-# finding using regular expressions
-locate -r 'regex'
-# checking that the file exists
-locate -e filename
-# showing command path
-which command
-which -a command
-
-
-
-Monitoring Users
-who -H # => displays logged in users
-id # => displays the current user and its groups
-whoami # => displays EUID
-# listing who’s logged in and what’s their current process.
-w
-uptime
-# printing information about the logins and logouts of the users
-last
-last -u username
-
-
-# displaying the file attributes
-lsattr filename
-#changing the file attributes
-chattr +-attribute filename # => Example: sudo chattr +i report.txt
-
-
-
-
-
-UMASK
-# displaying the UMASK
-umask
-# setting a new umask value
-umask new_value # => Example: umask 0022
+v - visual mode
+y - yank copy
+p - paste
 
 
 
@@ -177,3 +145,136 @@ $[TAB][TAB]	List all system variables
 @[TAB][TAB]	List all entries in your /etc/hosts file
 [TAB]	Auto complete
 cd -	change to PREVIOUS working directory
+
+
+
+
+
+
+Loops
+echo "XD"
+for i in {1..99}; do echo $i; done
+read -sp "Whats your name ? " name; echo "Hello $name"
+read a; read b; echo $(( a + b )); echo $(( a - b )); echo $(( a * b )); echo $(( a / b ))
+read a; read b; if ((a < b)); then x="is less than";fi;echo x
+read a; read b; if (( a < b )); then echo "X is less than Y";elif (( a == b )); then echo "X is equal to Y"; else echo "X is greater than Y"; fi
+read char; if [ "${char}" == "n" ] || [ "${char}" == "N" ]; then echo "NO"; elif [ "${char}" == "y" ] || [ "${char}" == "Y" ]; then echo "YES"; fi
+read a; read b; read c; if [ "${a}" == "${b}" ] && [ "${b}" == "${c}" ]; then echo "EQUILATERAL"; elif [ "${a}" == "${b}" ] || [ "${b}" == "${c}" ] || [ "${a}" == "${c}" ]; then echo "ISOSCELES"; else echo "SCALENE"; fi
+
+
+
+
+
+
+
+chmod
+0 - no permission
+1 - execute only
+2 - write only
+4 - read only
+
+
+
+
+
+
+
+Commands:
+type ls
+man -k "copy files"
+man -k uname
+C l - clear screen
+!1   - run number one from history
+!!   - run last command from history 
+!1:p  - just print the command, not run
+C g    - leave ,,control R,, - looking reverse
+
+
+dmesg - show mememory
+sha256sum ls - showchecksum
+cpm a b - compare files a and b 
+diff a b - compaes a and b
+patch - apply diff
+
+ls -i - hard like points to underlying inode, when soft like points to file.Hard like is like 2 variables pointing to same data
+
+
+
+
+
+du -sh /home/   - real size
+stat /home      
+
+shred -vu -n 100 file1
+
+
+# installing plocate
+sudo apt install plocate
+# updating the locate db
+sudo updatedb
+# displaying statistics
+locate -S
+# finding file by name
+locate filename # => filename is expanded to *filename*
+locate -i filename # => the filename is case insensitive
+locate -b '\filename' # => finding by exact name
+# finding using the basename
+locate -b filename
+# finding using regular expressions
+locate -r 'regex'
+# checking that the file exists
+locate -e filename
+# showing command path
+which command
+which -a command
+
+
+
+Monitoring Users
+who -H # => displays logged in users
+id # => displays the current user and its groups
+whoami # => displays EUID
+# listing who’s logged in and what’s their current process.
+w
+uptime
+# printing information about the logins and logouts of the users
+last
+last -u username
+
+
+# displaying the file attributes
+lsattr filename
+#changing the file attributes
+chattr +-attribute filename # => Example: sudo chattr +i report.txt
+
+
+
+
+
+UMASK
+# displaying the UMASK
+umask
+# setting a new umask value
+umask new_value # => Example: umask 0022
+
+
+
+
+
+
+
+apt install fonts-powerline   -   for good looking terminal
+
+# running a process in the background
+command & # => Example: sleep 100 &
+
+# Showing running jobs
+jobs
+# Stopping (pausing) the running process
+Ctrl + Z
+# resuming and bringing to the foreground a process by job_d
+fg %job_id
+# resuming in the background a process by job_d
+bg %job_id
+
+
